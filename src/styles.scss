@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@600;700&display=swap");
+
+html,
+body,
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  font-family: "Red Hat Text", sans-serif;
+  font-size: calc(14 / 16) * 1rem;
+  font-style: normal;
+}
