@@ -9,7 +9,7 @@ import { Validators } from '@angular/forms';
 export class AppComponent implements OnInit {
   password = '';
   placeholder = 'PIx1f5DaFX';
-  passwordLength = 12;
+  passwordLength = 10;
   includeLowercase = true;
   includeUppercase = true;
   includeNumbers = false;
