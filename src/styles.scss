@@ -16,3 +16,23 @@ body,
   text-decoration: none;
   font-family: "JetBrainsMono", monospace;
 }
+
+.text-on-1-line,
+.text-on-2-line,
+.text-on-3-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.text-on-1-line {
+  -webkit-line-clamp: 1;
+}
+
+.text-on-2-line {
+  -webkit-line-clamp: 2;
+}
+
+.text-on-3-line {
+  -webkit-line-clamp: 3;
+}
