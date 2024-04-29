@@ -1,81 +1,61 @@
-<div class="wrapper">
-  <div class="container">
-    <div class="messageAfterCopy" *ngIf="messageAfterCopy != ''">
-      {{ messageAfterCopy }}
-    </div>
-    <h1 class="app-title">Password Generator</h1>
-    <div class="main-content">
-      <div class="vierwer">
-        <span
-          class="word"
-          [ngStyle]="{
-            color: password == '' ? '#f1f1f160' : '#ffff'
-          }"
-          >{{ password == "" ? placeholder : password }}</span
-        >
-        <span class="icon-copy"
-          ><i class="bi bi-files" (click)="copyToClipboard()"></i>
+<div class="container">
+  <main fxLayout="column" fxLayoutGap="35px" fxLayoutGap.lt-sm="20px" fxLayoutAlign="start center">
+    <span class="app-title">Password Generator</span>
+    <div fxFill fxLayout="column" fxLayoutGap="22px" fxLayoutGap.lt-sm="16px">
+      <div fxFill class="pass-view-container" fxLayout="row" fxLayoutAlign="space-between center">
+        <p class="pass-view">PTx1f5DaFX</p>
+        <span class="icon-copy" fxLayoutAlign="center center" matTooltip="Copier" (click)="openSnackBar()">
+          <mat-icon fxLayoutAlign="center center">file_copy</mat-icon>
         </span>
       </div>
-      <div class="pass-caractere">
-        <div class="pass-lenght">
-          <div class="top">
-            <span class="name">Character Lenght</span>
-            <span class="value">{{ passwordLength }}</span>
-          </div>
-          <div class="bottom">
-            <input
-              type="range"
-              [(ngModel)]="passwordLength"
-              min="0"
-              max="20"
-              [value]="passwordLength"
-            />
-          </div>
+      <div fxFill class="settings" fxLayout="column" fxLayoutGap="40px">
+        <div class="ranger-container" fxLayout="column" fxLayoutGap="40px" fxLayoutGap.lt-sm="26px">
+          <p fxLayout="row" fxLayoutAlign="space-between center">
+            <span class="label">Character Length</span>
+            <span class="value" #sliderValue>10</span>
+          </p>
+          <input type="range" min="0" max="20" value="10" id="range" #range />
         </div>
-        <ul class="pass-options">
-          <li>
-            <input
-              type="checkbox"
-              [checked]="includeUppercase"
-              (click)="onCheckClick('upper')"
-            /><span>Include Uppercase Letters</span>
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              [checked]="includeLowercase"
-              (click)="onCheckClick('lower')"
-            /><span>Include Lowercase Letters</span>
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              [checked]="includeNumbers"
-              (click)="onCheckClick('number')"
-            /><span>Include Numbers</span>
-          </li>
-          <li>
-            <input
-              type="checkbox"
-              [checked]="includeSymbols"
-              (click)="onCheckClick('symbol')"
-            /><span>Include Symbols</span>
-          </li>
-        </ul>
-        <div class="pass-strength-value">
-          <span>STRENGTH</span>
-          <ul [ngClass]="strengthPassword">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
+        <div fxLayout="column" fxLayoutGap="30px" fxLayoutGap.lt-sm="16pxpx">
+          <div fxLayout="column" fxLayoutGap="35px" fxLayoutGap.lt-sm="30px">
+            <div class="check-container" fxLayout="column" fxLayoutGap="22px" fxLayoutGap.lt-sm="16px"
+              fxLayoutAlign="start start">
+              <label>
+                <input type="checkbox" [checked]="includeUppercase" [(ngModel)]="includeUppercase">
+                <span class="checkmark"></span>
+                Include Uppercase Letters
+              </label>
+              <label>
+                <input type="checkbox" [checked]="includeLowercase" [(ngModel)]="includeLowercase">
+                <span class="checkmark"></span>
+                Include Lowercase Letters
+              </label>
+              <label>
+                <input type="checkbox" [checked]="includeNumbers" [(ngModel)]="includeNumbers">
+                <span class="checkmark"></span>
+                Include Numbers
+              </label>
+              <label>
+                <input type="checkbox" [checked]="includeSymbols" [(ngModel)]="includeSymbols">
+                <span class="checkmark"></span>
+                Include Symbols
+              </label>
+            </div>
+            <div class="pass-strength" fxLayout="row" fxLayoutAlign="space-between center">
+              <span class="desc">Strenght</span>
+              <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
+                <span class="strength-txt">Medium</span>
+                <ul fxLayout="row" fxLayoutGap="8px">
+                  <li class="bare" *ngFor="let str of  strength"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <button class="btn-generate" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="22px">
+            <span>Generate</span>
+            <mat-icon fxLayoutAlign="center center">arrow_forward</mat-icon></button>
         </div>
-        <button class="generate-btn" (click)="generatePassword()">
-          GENERATE <i class="bi bi-arrow-right"></i>
-        </button>
       </div>
     </div>
-  </div>
+  </main>
 </div>
