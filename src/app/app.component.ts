@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   durationInSeconds = 1.5;
 
   constructor(private _snackBar: MatSnackBar) {
-    this.getConfigPassword();
+    // this.getConfigPassword();
     this.generatePassword();
   }
 
