@@ -3,40 +3,44 @@
     <span class="app-title">Password Generator</span>
     <div fxFill fxLayout="column" fxLayoutGap="22px" fxLayoutGap.lt-sm="16px">
       <div fxFill class="pass-view-container" fxLayout="row" fxLayoutAlign="space-between center">
-        <p class="pass-view">PTx1f5DaFX</p>
-        <span class="icon-copy" fxLayoutAlign="center center" matTooltip="Copier" (click)="openSnackBar()">
+        <p class="pass-view">{{password}}</p>
+        <span class="icon-copy" fxLayoutAlign="center center" matTooltip="Copier" (click)="copyToClipboard()">
           <mat-icon fxLayoutAlign="center center">file_copy</mat-icon>
         </span>
       </div>
       <div fxFill class="settings" fxLayout="column" fxLayoutGap="40px">
         <div class="ranger-container" fxLayout="column" fxLayoutGap="40px" fxLayoutGap.lt-sm="26px">
           <p fxLayout="row" fxLayoutAlign="space-between center">
-            <span class="label">Character Length</span>
-            <span class="value" #sliderValue>10</span>
+            <span class="label">Character Length(min 4)</span>
+            <span class="value" #sliderValue>{{passwordLength}}</span>
           </p>
-          <input type="range" min="0" max="20" value="10" id="range" #range />
+          <input type="range" min="0" max="20" [value]="passwordLength" [(ngModel)]="passwordLength" #range />
         </div>
         <div fxLayout="column" fxLayoutGap="30px" fxLayoutGap.lt-sm="16pxpx">
           <div fxLayout="column" fxLayoutGap="35px" fxLayoutGap.lt-sm="30px">
             <div class="check-container" fxLayout="column" fxLayoutGap="22px" fxLayoutGap.lt-sm="16px"
               fxLayoutAlign="start start">
               <label>
-                <input type="checkbox" [checked]="includeUppercase" [(ngModel)]="includeUppercase">
+                <input type="checkbox" [checked]="includeUppercase" [(ngModel)]="includeUppercase"
+                  (ngModelChange)="onChecked()">
                 <span class="checkmark"></span>
                 <span class="text-on-1-line">Include Uppercase Letters</span>
               </label>
               <label>
-                <input type="checkbox" [checked]="includeLowercase" [(ngModel)]="includeLowercase">
+                <input type="checkbox" [checked]="includeLowercase" [(ngModel)]="includeLowercase"
+                  (ngModelChange)="onChecked()">
                 <span class="checkmark"></span>
                 <span class="text-on-1-line">Include Lowercase Letters</span>
               </label>
               <label>
-                <input type="checkbox" [checked]="includeNumbers" [(ngModel)]="includeNumbers">
+                <input type="checkbox" [checked]="includeNumbers" [(ngModel)]="includeNumbers"
+                  (ngModelChange)="onChecked()">
                 <span class="checkmark"></span>
                 Include Numbers
               </label>
               <label>
-                <input type="checkbox" [checked]="includeSymbols" [(ngModel)]="includeSymbols">
+                <input type="checkbox" [checked]="includeSymbols" [(ngModel)]="includeSymbols"
+                  (ngModelChange)="onChecked()">
                 <span class="checkmark"></span>
                 Include Symbols
               </label>
@@ -44,14 +48,15 @@
             <div class="pass-strength" fxLayout="row" fxLayoutAlign="space-between center">
               <span class="desc">Strenght</span>
               <div fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center">
-                <span class="strength-txt">Medium</span>
-                <ul fxLayout="row" fxLayoutGap="8px">
+                <span class="strength-txt">{{strengthPassword}}</span>
+                <ul [class]="strengthClass" fxLayout="row" fxLayoutGap="8px">
                   <li class="bare" *ngFor="let str of  strength"></li>
                 </ul>
               </div>
             </div>
           </div>
-          <button class="btn-generate" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="22px">
+          <button class="btn-generate" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="22px"
+            (click)="generatePassword()">
             <span>Generate</span>
             <mat-icon fxLayoutAlign="center center">arrow_forward</mat-icon></button>
         </div>

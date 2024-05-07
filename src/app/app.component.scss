@@ -227,6 +227,51 @@ main {
     width: 10px;
     border: 2px solid $AlmostWhite;
   }
+
+  .un {
+    .bare {
+      &:first-of-type {
+        background-color: $Red;
+        border-color: $Red;
+      }
+    }
+  }
+
+  .deux {
+    .bare {
+
+      &:nth-of-type(1),
+      &:nth-of-type(2) {
+        border-color: $Orange;
+        background-color: $Orange;
+      }
+    }
+  }
+
+  .trois {
+    .bare {
+
+      &:nth-of-type(1),
+      &:nth-of-type(2),
+      &:nth-of-type(3) {
+        border-color: $Yellow;
+        background-color: $Yellow;
+      }
+    }
+  }
+
+  .quatre {
+    .bare {
+
+      &:nth-of-type(1),
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      &:nth-of-type(4) {
+        border-color: $NeonGreen;
+        background-color: $NeonGreen;
+      }
+    }
+  }
 }
 
 .btn-generate {
